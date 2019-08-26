@@ -1,83 +1,126 @@
 # SVGA-AEConverter
 
-After Effects CC plugin for converting animations to SVGA source file.
+本工具适用于 After Effects CC 2018 & 2019，
+使用本工具可以将 AEP 文件转换为 SVGA 文件。
 
-## Installation
+## Using
+[Usage](./DOC/Usage.md)
 
-[Click Here Download ZIP](https://github.com/yyued/SVGA-AEConverter/archive/master.zip)
+## Detail
+[Converter](./DOC/Converter.md)
 
-### windows
+## Intro
 
-* Unzip windows / SVGAConverter_AE.zip;
-* Running **install.exe** -> **Install Now** ;
-* Open your After Effects and save your project which will be converted;
-* Select the **SVGA-AEConverter** extension on Window > Extensions > SVGAConverter_AE;
-* Select 输出路径 > 开始转换 
-* Wait a moment, SVGA source file Will be generated in the directory you choose;
-* You can click 选择播放文件 to selete the local SVGA for preview;
-* Use the Right Button to start / pause the preview.
+SVGA-Converter 是一个 Adobe CEP 插件，
+由两个部分组成：
+`CEP + JSX`
 
-### mac 
-* Download、install and run [ZXP Installer](http://updates.aescripts.com/zxp-installer/mac/update-mac.zip);
-* Select Menu > File > Open, select the converter installer downloaded;
-* Select the **SVGA-AEConverter** extension on Window > Extensions > SVGAConverter_AE;
-* Select 输出路径 > 开始转换 
-* Wait a moment, the SVGA source file Will be generated in the directory you choose;
-* You can click 选择播放文件 to selete the local SVGA for preview;
-* Use the Right Button to start / pause the preview.
+### CEP
 
-### Allow Scripts to Write Files and Access Network
+CEP 是一个带 Node 环境的本地 Web 模块，
+你可以使用各种前端框架并且最终产生 
+HTML + JS + CSS
+用于业务功能 UI 展示。
 
-Go to Edit > Preferences > General > and check on "Allow Scripts to Write Files and Access Network"
+### JSX
 
-## SVGA File Test
+JSX 使用 ExtendScript，
+可以通过 Adobe 提供的 API 管理插件所在宿主应用的 DOM Tree，
+从而通过脚本代码对宿主应用进行操作。
+<br><br>
 
-To test whether the SVGA source file is working properly：
-1. Use the button 选择播放文件 to selete the local SVGA for preview;
-2. Open http://svga.io/svga-preview.html, Drag a SVGA source file or select a file for preview。
+## DEV
+
+### 分支
+
+可以看到目前 Converter 主要的分支有：
+
+#### 0.x
+
+* converter-ae_0.1.x_maint
+* converter-ae_0.2.x_maint
+
+#### 1.x
+
+* converter-ae_1.0.0_feature
+
+其中，
+`0.1.x `对应的是 1.x 格式的基于 json 格式的 SVGA 动画，
+只有一个 svga.jsx 文件，
+可以直接在 Extension Toolkit 中运行调试，方便进行纯 JSX 开发。
+ 
+`0.2.x `对应的是 2.x 格式的基于 protobuf 格式的 SVGA 动画。
+在 0.1.x 的 jsx 上集成了 HTML 图形界面和 Protobuf 用于支持 2.x,
+这两个部分一般不需要改动。
+
+`1.x` 对应的是使用 Vue + js 重构过的插件。
+目前正在开发验证中。
+
+### 开发
+
+对 CEP 的开发与前端项目相似，
+这里主要讲 JSX 开发。
+
+1. 切换到 0.1.x 分支。
+2. 打开项目根目录：
+    * 
+    * LICENSE ------- ()
+    * README.md ----- ()
+    * CHANGELOG.md -- ()
+    * DEV ----------- (开发)
+    * DOC ----------- (文档)
 
 
+我们在 DEV/source 目录进行开发工作，
+并在 DOC 中及时更新特性文档。
 
+开发完成后，使用
 ```
----------------- 中英文分割线 ------------------
+$ npm i
+$ npm run start
 ```
 
+`./build` 目录就会产生对应的 `svga.jsx` 文件。
 
-# SVGA-AEConverter
+### 测试
 
-本工具适用于 After Effects CC 系列，使用本工具可以将 AEP 文件转换为 SVGA 文件。
+1. 打开 Extension Toolkit；
+2. 打开生成的 svga.jsx 文件；
+3. 选择对应宿主软件
+![selectSource](media/selectSource.png)
 
-## 用法
 
-[点此下载压缩包](https://github.com/yyued/SVGA-AEConverter/archive/master.zip)
 
-### windows
+#### 断点
+点击即将调试代码左边框：
 
-* 解压 windows / SVGAConverter_AE.zip;
-* 运行解压后得到的 install.exe -> Install Now 完成安装;
-* 打开 After effects 将 **被转换文件** 保存;
-* 选择菜单 > 窗口 > 扩展 > SVGAConverter_AE;
-* 选择 输出路径 > 开始转换 稍等片刻，SVGA 文件就会生成在您所输出的目录并开始播放;
-* 您也可以直接点击 选择播放文件 直接播放本地的 *.svga文件;
-* 使用鼠标右键可以 开始/暂停播放。
+#### 调试
+![debug](media/debug.png)
 
-### mac 
-* 下载、安装并运行 Adobe 的插件安装程序 [ZXP Installer](http://updates.aescripts.com/zxp-installer/mac/update-mac.zip);
-* 选择 菜单 > 文件 > 打开，选中 mac/SVGAConverter_AE.zxp，根据引导完成安装;
-* 打开 After Effects 将 **被转换文件** 保存;
-* 选择菜单 > 窗口 > 扩展 > SVGAConverter_AE;
-* 选择 输出路径 > 开始转换 稍等片刻，SVGA 文件就会生成在您所输出的目录并开始播放;
-* 您也可以直接点击 选择播放文件 直接播放本地的 *.svga文件;
-* 使用鼠标右键可以 开始/暂停播放。
+#### Log
 
-### 允许脚本读取和写入文件
+在断点的 Console 窗口输入对应变量，
+就可以直接打印信息。
 
-启动 After Effects，选择菜单 编辑 > 偏好设置 > 常规 > 在 "允许脚本读取和写入文件" 一项打勾
+在代码中使用：
+`$.writeln(message)`
+可以在运行时将对象打印在 Console 窗口上。
 
-## 测试
+### 合并
 
-要测试生成文件是否可以正常使用：
-1. 使用 菜单 > 窗口 > 扩展 > SVGAConverter_AE 直接播放本地 SVGA 文件;
-2. 使用浏览器，打开 http://svga.io/svga-preview.html ，选择或拖入 SVGA 源文件，即可预览动画效果。
+0.1.x 开发验证完成，
+可以将 0.1.x 直接合并到 0.2.0，
+为 JSX 代码带上 UI 和 2.x 支持。
+
+### 打包
+
+0.2.0 项目可以生成图形插件的安装包 .zxp 文件，
+在 DOC 目录下使用：
+```
+$ npm i
+$ npm run start
+```
+
+zxp 文件就会出现在对应 mac | win 文件夹中。
 
 
