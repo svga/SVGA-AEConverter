@@ -1,3 +1,3 @@
 # SVGA-AEConverter
 AEP2SVGA tool 
-see http://svga.io/docute/#/Plug-in
+see http://svga.io/designer.html
